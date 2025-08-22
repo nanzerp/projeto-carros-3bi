@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Filmes Carros</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #222;
+      color: #fff;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    .controls {
+      margin-bottom: 20px;
+    }
+
+    .controls button {
+      margin: 5px;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .filmes {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .filme {
+      position: relative;
+      width: 200px;
+      cursor: pointer;
+    }
+
+    .filme img {
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0px 4px 12px rgba(0,0,0,0.6);
+      transition: transform 0.2s;
+    }
+
+    .filme img:hover {
+      transform: scale(1.05);
+    }
+
+    .descricao {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0,0,0,0.8);
+      color: #ffcc00;
+      padding: 10px;
+      border-radius: 0 0 10px 10px;
+      font-size: 14px;
+      display: none;
+    }
+
+    .alto-contraste {
+      background-color: #000 !important;
+      color: #FFD700 !important;
+    }
+  </style>
+</head>
+<body>
+  <h1>Filmes Carros</h1>
+
+  <div class="controls">
+    <button onclick="aumentarFonte()">A+</button>
+    <button onclick="diminuirFonte()">A-</button>
+    <button onclick="alternarContraste()">Alto Contraste</button>
+  </div>
+
+  <div class="filmes">
+    <div class="filme">
+      <img src="https://play-lh.googleusercontent.com/kHt8qbche40zkE6yZwA8IUe5ARINp4PjrJ5mi622GEzQFYWCaGTQDAl58rrRKRKyhnD2" alt="Carros">
+      <div class="descricao">Relâmpago McQueen, um carro de corrida, acaba preso em Radiator Springs e faz novos amigos.</div>
+    </div>
+    <div class="filme">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKiMV9z58lN_5Qv5_UiBGWcRjHbJjGMVoAGw&s" alt="Carros 2">
+      <div class="descricao">McQueen e Mater participam de uma competição internacional, onde Mater se envolve em uma trama de espionagem.</div>
+    </div>
+    <div class="filme">
+      <img src="https://play-lh.googleusercontent.com/TU0WsH09qXHSogMFYzsIXk6Xxu3wPtAi808nzlq1xrvZSlNfQGUUHueepokoVePPeVCmKg" alt="Carros 3">
+      <div class="descricao">McQueen precisa provar que ainda é capaz de competir com carros mais rápidos, enquanto treina com Cruz Ramirez.</div>
+    </div>
+  </div>
+
+  <script>
+    // Mostrar/ocultar descrição ao passar o mouse
+    document.querySelectorAll('.filme').forEach(filme => {
+      filme.addEventListener('mouseenter', () => {
+        filme.querySelector('.descricao').style.display = 'block';
+      });
+      filme.addEventListener('mouseleave', () => {
+        filme.querySelector('.descricao').style.display = 'none';
+      });
+    });
+
+    // Controle de fonte
+    let fontSize = 14;
+    function aumentarFonte() {
+      fontSize += 2;
+      document.querySelectorAll('.descricao').forEach(desc => {
+        desc.style.fontSize = fontSize + "px";
+      });
+    }
+
+    function diminuirFonte() {
+      if (fontSize > 10) {
+        fontSize -= 2;
+        document.querySelectorAll('.descricao').forEach(desc => {
+          desc.style.fontSize = fontSize + "px";
+        });
+      }
+    }
+
+    // Alternar contraste
+    let contrasteAtivo = false;
+    function alternarContraste() {
+      contrasteAtivo = !contrasteAtivo;
+      if (contrasteAtivo) {
+        document.body.classList.add('alto-contraste');
+      } else {
+        document.body.classList.remove('alto-contraste');
+      }
+    }
+  </script>
+</body>
+</html>
